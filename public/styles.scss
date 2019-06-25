@@ -105,3 +105,47 @@ header,main,section,footer{
   }
 }
 
+.omdb-main {
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0px;
+    flex-wrap: wrap;
+    flex-basis: 20%;
+    // border: 1px solid green;
+    min-width: 780px;
+
+    li {
+      color: black;
+      list-style: none;
+      font-size: small;
+      display: flex;
+      border: 3px solid white;
+      align-items: center;
+      flex-basis: 19%;
+      word-break: break-word;
+      margin: 0 5px 5px 0;
+      cursor: cell;
+      border-radius: 10px;
+
+      &:hover {
+        border: 3px solid red;
+      }
+
+      &:hover p {
+        color: red;
+      }
+
+      img{
+        height: 130px;
+        margin-right: 5px;
+        border-radius: 20px;
+        border: 1px solid #564d4d;
+      }
+    }
+
+  }
+
+}

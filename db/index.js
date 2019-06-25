@@ -40,9 +40,10 @@ function sync(force=false, retries=0, maxRetries=5) { //use force=true to drop a
 			return
 		}
 		// Else do autocreate
+		// this does not work, must fix. create via Postico for now
 		console.log(`${retries ? `[retry ${retries}]` : ''} Creating database ${dbName}...`)
 		return new Promise(
-		  (resolve, reject) => require('child_process').exec(`createdb "${dbName}"`, resolve)
+		  (resolve, reject) => require('child_process').exec(`CREATE DATABASE "${dbName}"`, resolve)
 		)
 		.then(() => sync(true, retries + 1));
 	});

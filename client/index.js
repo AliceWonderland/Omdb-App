@@ -8,7 +8,7 @@ import { createStore } from 'redux';
 import { appStore } from './store';
 import '../public/styles.scss';
 
-import { Header, Footer, Main, TicTacToe } from './components';
+import { Header, Footer, Main, TicTacToe, Omdb } from './components';
 
 let store = createStore(appStore);
 import { history } from './history.js';
@@ -21,6 +21,7 @@ ReactDOM.render(
 			  <Switch>
 				  <Route exact path="/" component={Main} />
 				  <Route exact path="/tictactoe" component={TicTacToe} />
+				  <Route exact path="/omdb" component={Omdb} />
 				  <Route exact path="/reddit" component={Main} />
 				  <Route component={Main} />
 				  <Route path='*' component={Main} />

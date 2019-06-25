@@ -20,11 +20,11 @@ class Nav extends Component {
 	}
 
 	render() {
-
 		return (
 		  <nav>
 			  <Link to="/sample">Home <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
 			  <Link to="/tictactoe">Tic Tac Toe <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
+			  <Link to="/omdb">OMDB <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
 		  </nav>
 		);
 	}
