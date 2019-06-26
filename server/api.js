@@ -90,35 +90,22 @@ api.post('/movies/new', (req, res, next) => {
 });
 
 // EDIT MOVIE
-api.put('/movies/edit/:movieId', (req, res, next) => {
-	var studentId=req.params.studentId;
-	var studentFirst=req.body.firstName;
-	var studentLast=req.body.lastName;
-	var studentEmail=req.body.email;
-	var studentImage=req.body.image;
-	var studentCampus=Number(req.body.campusId);
+api.put('/movies/edit/', (req, res, next) => {
+	const imdbID=req.body.imdbID,
+		rating=req.body.rating,
+		comment=req.body.comment;
 
-	if(!Number(studentId)){res.sendStatus(500);}
-	else{
-		Students.findById(studentId)
-		.then(function (data) {
-			if(data){
-				data.update({
-					firstName: studentFirst,
-					lastName: studentLast,
-					email: studentEmail,
-					image: studentImage,
-					campusId: studentCampus
-				})
-				.then(function() {
-					res.send(data);
-				});
-			}
-			else{
-				res.sendStatus(404);
-			}
-		});
-	}
+	Movies.update({
+		rating: rating,
+		comment: comment
+	}, {
+		where: {imdbID: imdbID}
+	})
+	.then(function (data) {
+		console.log('edited',data);
+		res.send(data);
+	})
+	.catch(next);
 });
 
 // DELETE MOVIE

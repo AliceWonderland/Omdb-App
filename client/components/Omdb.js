@@ -59,6 +59,31 @@ class Omdb extends Component {
 		e.target.value=this.state.search;
 	}
 
+	handleComment(e){
+		console.log(e.target.value);
+		this.setState({movie: {...this.state.movie, comment:e.target.value}});
+	}
+
+	saveComment(e){
+		console.log('sve cmt', e.target.value);
+		this.setState({movie: {...this.state.movie, comment:e.target.value}});
+		let api=fetch('/api/movies/edit', {
+				method: 'PUT',
+				body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
+				headers:{
+				'Content-Type': 'application/json'
+				}
+			})
+			.then(res => res.json())
+			.then(response => {
+				console.log('res',response);
+				console.log('Success:', JSON.stringify(response));
+				console.log('state',this.state.movie);
+				this.getFavorites();
+			})
+			.catch(error => console.error('Error:', error));
+	}
+
 	searchOMDB(){
 		console.log('getapi',this.state.search);
 		
@@ -99,7 +124,7 @@ class Omdb extends Component {
 			console.log('the data',responseJson)
 			let data = responseJson;
 			let api=fetch('/api/movies/new', {
-					method: 'POST', // or 'PUT'
+					method: 'POST',
 					body: JSON.stringify(data), // data can be `string` or {object}!
 					headers:{
 					'Content-Type': 'application/json'
@@ -114,6 +139,7 @@ class Omdb extends Component {
 					this.getFavorites();
 				})
 				.catch(error => console.error('Error:', error));
+				
 		})
 		.catch((error) => {
 			console.error('error', error);
@@ -157,8 +183,20 @@ class Omdb extends Component {
 									<p>{movie.title}</p>
 									<p>{movie.year}</p>
 									<p>{movie.plot}</p>
-									<p>Rating: {movie.rating}</p>
-									<p>Comment: {movie.comment}</p>
+									<p>Rating: {movie.rating}
+										<span className="movieRating">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</span>
+									</p>
+									{/* <p contenteditable="true" onChange={(e)=>this.handleComment(e)}>{movie.comment}</p> */}
+									<textarea name="comments" value={this.state.movie.comment} 
+										onChange={(e)=>this.handleComment(e)}
+										onBlur={(e)=>this.saveComment(e)}
+									 />
 								</div>
 							</div>
 						) : (
@@ -166,11 +204,12 @@ class Omdb extends Component {
 						)}
 						
 						{/* favorites */}
-						<ul className="contentFavorites">Favorites
+						<ul className="contentFavorites">
+							<li>Favorites</li>
 							{
 								favorites &&
 								favorites.map((item, idx) => (
-									<li onClick={()=>this.handleEdit(idx)}>{item.title}</li>
+									<li onClick={()=>this.handleEdit(idx)} className={(this.state.movie && (this.state.movie.imdbID === item.imdbID))? 'active':''}>{item.title}</li>
 								))
 							}
 						</ul>

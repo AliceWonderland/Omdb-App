@@ -36,7 +36,8 @@ module.exports = db.define('movies',
     },
     comment:{
       type: Sequelize.STRING(1234),
-      allowNull: true
+      allowNull: false,
+      defaultValue: 'Add your comments here!'
     }
   },
   {
