@@ -64,23 +64,29 @@ api.post('/movies/new', (req, res, next) => {
 		plot=req.body.Plot,
 		imdbID=req.body.imdbID;
 
-	console.log("TEST", req.body);
+	console.log("TEST", req.body, imdbID);
 
-	Movies.create({
-		title: title,
-		poster: poster,
-		year: year,
-		plot: plot,
-		imdbID: imdbID
-	})
+	Movies.findAll({ where: {imdbID: imdbID} })
 	.then(function (data) {
-		console.log("DATA",data.dataValues);
-		// res.sendStatus(201);
-
-		res.json(data.dataValues);
-	})
-	.catch(next);
-
+		if(data.length){
+			console.log('dont create',data);
+			res.send(data);
+		}else{
+			console.log('create');
+			Movies.create({
+				title: title,
+				poster: poster,
+				year: year,
+				plot: plot,
+				imdbID: imdbID
+			})
+			.then(function (data) {
+				console.log("DATA",data.dataValues);
+				res.json(data.dataValues);
+			})
+			.catch(next);
+		}
+	});
 });
 
 // EDIT MOVIE

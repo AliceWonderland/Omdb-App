@@ -4,6 +4,11 @@ var db = require('../index.js');
 
 module.exports = db.define('movies',
   {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     title:{
       type: Sequelize.STRING,
       allowNull: false
@@ -18,7 +23,7 @@ module.exports = db.define('movies',
         allowNull: false
     },
     plot:{
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING(1234),
         allowNull: true
     },
     imdbID:{
@@ -30,7 +35,7 @@ module.exports = db.define('movies',
       allowNull: true
     },
     comment:{
-      type: Sequelize.BLOB,
+      type: Sequelize.STRING(1234),
       allowNull: true
     }
   },

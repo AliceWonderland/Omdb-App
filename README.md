@@ -1,12 +1,13 @@
 OMDB App
 See Movies that have been rated by Users
-Add in a Movie, With a Rating and/or Comment
+Add in a Movie, With a Rating or Comment
 Update a Movie Rating or Comment (Optional)
 Delete a Movie
-s
+
 React
 Express
 Sequelize/Postgres
+Fetch
 
 Pre-Installation
 Node.js

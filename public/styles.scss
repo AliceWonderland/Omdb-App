@@ -107,7 +107,7 @@ header,main,section,footer{
 
 .omdb-main {
 
-  ul {
+  ul.searchResults {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -124,28 +124,58 @@ header,main,section,footer{
       display: flex;
       border: 3px solid white;
       align-items: center;
-      flex-basis: 19%;
+      flex-basis: 16%;
       word-break: break-word;
       margin: 0 5px 5px 0;
       cursor: cell;
-      border-radius: 10px;
+      border-radius: 23px;
+      font-weight: bold;
+
 
       &:hover {
         border: 3px solid red;
+        background-color: #ffc0cb6b;
       }
 
       &:hover p {
         color: red;
+        font-weight: bold;
       }
 
       img{
         height: 130px;
         margin-right: 5px;
         border-radius: 20px;
-        border: 1px solid #564d4d;
+        border: 1px solid #564d4d30;
       }
     }
 
   }
 
+  div.contentBody{
+    display: flex;
+    justify-content: space-between;
+
+    .contentMovie{
+      display: flex;
+
+      img{
+        border-radius: 10px;
+        margin-right: 20px;
+      }
+
+      p:nth-child(1), p:nth-child(2){
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      p:nth-child(3){
+        font-size: small;
+      }
+
+      p:nth-child(4){
+        color: red;
+      }
+    }
+  }
 }
