@@ -69,8 +69,8 @@ api.post('/movies/new', (req, res, next) => {
 	Movies.findAll({ where: {imdbID: imdbID} })
 	.then(function (data) {
 		if(data.length){
-			console.log('dont create',data);
-			res.send(data);
+			console.log('dont create',data[0].dataValues);
+			res.send(data[0].dataValues);
 		}else{
 			console.log('create');
 			Movies.create({

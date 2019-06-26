@@ -105,7 +105,21 @@ header,main,section,footer{
   }
 }
 
-.omdb-main {
+main.omdb-main {
+
+  form.searchBar {
+    display: flex;
+    justify-content: center;
+
+    input {
+      border-radius: 5px;
+      border: 0px;
+      background-color: #eee;
+      padding: 19px;
+      font-size: large;
+      width: 65%;
+    }
+  }
 
   ul.searchResults {
     display: flex;
@@ -142,7 +156,7 @@ header,main,section,footer{
         font-weight: bold;
       }
 
-      img{
+      img {
         height: 130px;
         margin-right: 5px;
         border-radius: 20px;
@@ -152,30 +166,40 @@ header,main,section,footer{
 
   }
 
-  div.contentBody{
+  div.contentBody {
     display: flex;
     justify-content: space-between;
 
-    .contentMovie{
+    div.contentMovie {
       display: flex;
+      width: 60%;
 
-      img{
+      img {
         border-radius: 10px;
         margin-right: 20px;
+        align-self: flex-start;
       }
 
-      p:nth-child(1), p:nth-child(2){
+      p:nth-child(1), p:nth-child(2) {
         font-weight: bold;
         text-transform: uppercase;
       }
 
-      p:nth-child(3){
+      p:nth-child(2) {
         font-size: small;
       }
 
-      p:nth-child(4){
+      p:nth-child(3) {
+        font-size: small;
+      }
+
+      p:nth-child(4) {
         color: red;
       }
     }
+
+    ul.contentFavorites {
+      width: 25%;
+    } 
   }
 }

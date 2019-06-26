@@ -129,7 +129,6 @@ class Omdb extends Component {
 			<main className="omdb-main">
 				{/* search */}
 				<form className="searchBar" onSubmit={this.handleSubmit}>
-					<h1>OMDB App</h1>
 					<input type="text" name="search" value={this.state.search} 
 						onChange={(e)=>this.handleChange(e)}
 						onKeyPress={(e)=>this.handleSearch(e)}
@@ -156,9 +155,10 @@ class Omdb extends Component {
 								<img className="moviePoster" src={(movie.poster !== 'N/A') ? movie.poster : 'http://l.yimg.com/os/mit/media/m/entity/images/movie_placeholder-103642.png'} />
 								<div className="movieDetail">
 									<p>{movie.title}</p>
-									<p>Year: {movie.year}, Rating: {movie.rating}</p>
+									<p>{movie.year}</p>
 									<p>{movie.plot}</p>
-									<p>{movie.comment}</p>
+									<p>Rating: {movie.rating}</p>
+									<p>Comment: {movie.comment}</p>
 								</div>
 							</div>
 						) : (
