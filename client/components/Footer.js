@@ -5,7 +5,7 @@ class Footer extends Component {
 	render() {
 		return (
 		  <footer>
-			  <p>Source Code available on <a href="https://github.com/AliceWonderland/" target="_blank" rel="noopener">Github</a></p>
+			  <p>By <a href="https://github.com/AliceWonderland/" target="_blank" rel="noopener">AliceWonderland/Github</a></p>
 		  </footer>
 		);
 	}

@@ -28,6 +28,7 @@ class Omdb extends Component {
 
 		// if click is from search form
 		if(e.key == 'Enter' || e.target.value==='Go'){
+			e.target.blur();
 			this.searchOMDB();
 		}
 	}

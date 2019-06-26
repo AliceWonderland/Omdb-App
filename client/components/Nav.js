@@ -22,9 +22,9 @@ class Nav extends Component {
 	render() {
 		return (
 		  <nav>
-			  <Link to="/sample">Home <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
-			  <Link to="/tictactoe">Tic Tac Toe <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
-			  <Link to="/omdb">OMDB <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
+			  <Link to="/omdb">Home <i className="fas fa-arrow-right" aria-hidden="true"></i></Link>
+			  <a href="https://github.com/AliceWonderland/Omdb-App" target="_blank">GitHub <i className="fas fa-arrow-right" aria-hidden="true"></i></a>
+			  <a href="http://www.omdbapi.com/" target="_blank">OMDB <i className="fas fa-arrow-right" aria-hidden="true"></i></a>
 		  </nav>
 		);
 	}
