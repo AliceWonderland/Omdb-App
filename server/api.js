@@ -11,49 +11,12 @@ api.get('/hello', (req, res) => res.send({hello: 'world'}));
 api.get('/test', (req, res) => res.send('test api'));
 
 // OMDB
-api.get('/search/omdb/:string', (req, res, next) => {
-	const searchString=req.params.string;
-	console.log(searchString);
-	Movies.findAll({ order: [['id', 'DESC']] })
-	.then(function(movies) {
-		// console.log(JSON.stringify(movies));
-		res.json(movies);
-	})
-	.catch(next);
-
-	// Students.findAll({})
-	// .then(students => res.json(students))
-	// .catch(next);
-
-});
-
-api.get('/get/omdb/:imdbID', (req, res, next) => {
-	const imdbID=req.params.imdbID;
-	Movies.findAll({ order: [['id', 'DESC']] })
-	.then(function(movies) {
-		// console.log(JSON.stringify(movies));
-		res.json(movies);
-	})
-	.catch(next);
-
-	// Students.findAll({})
-	// .then(students => res.json(students))
-	// .catch(next);
-
-});
-
 api.get('/movies', (req, res, next) => {
 	Movies.findAll({ order: [['id', 'DESC']] })
 	.then(function(movies) {
-		// console.log(JSON.stringify(movies));
 		res.json(movies);
 	})
 	.catch(next);
-
-	// Students.findAll({})
-	// .then(students => res.json(students))
-	// .catch(next);
-
 });
 
 // ADD MOVIE
@@ -111,40 +74,20 @@ api.put('/movies/edit/', (req, res, next) => {
 // DELETE MOVIE
 api.delete('/movies/:movieId', (req, res, next) => {
 	var studentId=req.params.studentId;
-
-	if(!Number(studentId)){res.sendStatus(500)}
-	else {
-		Students.findById(studentId)
-		.then(function (data) {
-			if (data) {
-				res.status(204);
-				data.destroy({force: true})
-				.then(function (data) {
-					res.send(data);
-				});
-			}
-			else {
-				res.sendStatus(404);
-			}
-		});
-	}
-
-	// Students.destroy({
-	//     where: {
-	//         id: e.target.id
-	//     }
-	// })
-	// .then(function (data) {
-	//     console.log("data",data);
-	//     if(data===0){res.sendStatus(404);}
-	//     else{
-	//         res.status(204);
-	//         res.send('done');
-	//     }
-	//
-	// })
-	// .catch(next);
-
+	
+	Students.findById(studentId)
+	.then(function (data) {
+		if (data) {
+			res.status(204);
+			data.destroy({force: true})
+			.then(function (data) {
+				res.send(data);
+			});
+		}
+		else {
+			res.sendStatus(404);
+		}
+	});
 });
 
 

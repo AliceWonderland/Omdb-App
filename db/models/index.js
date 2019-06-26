@@ -16,6 +16,5 @@ const Movie = require('./movie');;
 Student.belongsTo(Campus);
 Campus.hasMany(Student);
 
-
 module.exports = { User, Campus, Student, Movie };
 
