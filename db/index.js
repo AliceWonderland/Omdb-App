@@ -10,6 +10,7 @@ const pkg = require('../package.json');
 
 const dbName = process.env.DATABASE_NAME || pkg.database;
 const connectionString = process.env.DATABASE_URL || `postgres://localhost:5432/${dbName}`;
+// flip this on for deploy
 // const connectionString = process.env.DATABASE_URL || `postgres://alice:test@localhost:5432/${dbName}`;
 
 console.log(chalk.yellow(`Opening database connection to ${connectionString}`));
