@@ -9,7 +9,7 @@ class Omdb extends Component {
             favorites: [],
             movie: null,
             searchResults: [],
-            search: 'e.g. Guardians'
+            search: 'e.g. Guardians of the Galaxy'
         };
         //bind to maintin 'this' in children
         this.handleAdd = this.handleAdd.bind(this);
