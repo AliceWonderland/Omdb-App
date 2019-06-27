@@ -48,9 +48,9 @@ api.post('/movies/new', (req, res, next) => {
 // EDIT MOVIE
 api.put('/movies/edit/', (req, res, next) => {
 	const imdbID=req.body.imdbID,
-		rating=req.body.rating,
+		rating=req.body.rating+"", //toString() would not work
 		comment=req.body.comment;
-
+    console.log('rat',rating, imdbID,comment, req.body);
 	Movies.update({
 		rating: rating,
 		comment: comment

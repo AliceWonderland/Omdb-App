@@ -15,8 +15,8 @@ module.exports = db.define('movies',
     },
     poster:{
         type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: 'https://unsplash.it/g/252/200/?random'
+        defaultValue: 'https://unsplash.it/g/252/200/?random',
+        allowNull: false
     },
     year:{
         type: Sequelize.STRING,
@@ -29,15 +29,17 @@ module.exports = db.define('movies',
     imdbID:{
       type: Sequelize.STRING,
       allowNull: false
-  },
+    },
     rating:{
-      type: Sequelize.STRING,
-      allowNull: true
+      type: Sequelize.ENUM,
+      values: ['0','1','2','3','4','5'], //pg only accepts strs as vals
+      defaultValue: '0',
+      allowNull: false
     },
     comment:{
       type: Sequelize.STRING(1234),
-      allowNull: false,
-      defaultValue: 'Add your comments here!'
+      defaultValue: 'Add your comments here!',
+      allowNull: false
     }
   },
   {

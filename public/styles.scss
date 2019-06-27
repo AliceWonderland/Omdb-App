@@ -214,39 +214,51 @@ main.omdb-main {
         } 
     }
 
-    .rating {
-        i:nth-child(1) {
+    .movieRating {
+        i.fa-star:hover {
+            cursor: pointer;
+        }
+
+        i.fa-star {
             color: #eee;
 
-            &:hover {
-                color: red;
-            }
-        }
-        i:nth-child(2) {
-            color: #eee;
+            &:nth-child(1) {
+                color: #eee;
 
-            &:hover {
-                color: red;
+                &:hover {
+                    color: red;
+                }
             }
-        }
-        i:nth-child(3) {
-            color: #eee;
+            &:nth-child(2) {
+                color: #eee;
 
-            &:hover {
-                color: red;
+                &:hover {
+                    color: red;
+                }
             }
-        }
-        i:nth-child(4) {
-            color: #eee;
+            &:nth-child(3) {
+                color: #eee;
 
-            &:hover {
-                color: red;
+                &:hover {
+                    color: red;
+                }
             }
-        }
-        i:nth-child(5) {
-            color: #eee;
-            
-            &:hover {
+            &:nth-child(4) {
+                color: #eee;
+
+                &:hover {
+                    color: red;
+                }
+            }
+            &:nth-child(5) {
+                color: #eee;
+                
+                &:hover {
+                    color: red;
+                }
+            }
+
+            &.active {
                 color: red;
             }
         }

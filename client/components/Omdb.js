@@ -8,6 +8,7 @@ class Omdb extends Component {
             favorites: [],
             movie: null,
             searchResults: [],
+            stars: [1,2,3,4,5],
             search: 'e.g. Guardians of the Galaxy'
         };
         //bind to maintin 'this' in children
@@ -15,6 +16,7 @@ class Omdb extends Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handleComment = this.handleComment.bind(this);
         this.saveComment = this.saveComment.bind(this);
+        this.saveRating = this.saveRating.bind(this);
     }
 
 	componentDidMount() {	
@@ -78,6 +80,30 @@ class Omdb extends Component {
 			.catch(error => console.error('Error:', error));
 	}
 
+    saveRating(stars){
+        stars=stars;
+
+        this.setState({
+            movie: {...this.state.movie, rating:stars}
+        }, () => {
+            let api=fetch('/api/movies/edit', {
+                    method: 'PUT',
+                    body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
+                    headers:{
+                    'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(response => {
+                    console.log('res',response);
+                    console.log('Success:', JSON.stringify(response));
+                    console.log('state',this.state.movie);
+                    this.getFavorites();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    }
+
 	searchOMDB(){
 		let api=fetch('http://www.omdbapi.com/?s='+this.state.search+'&type=movie&page=1&apikey=e5a8df1')
 			.then((response) => response.json())
@@ -137,6 +163,7 @@ class Omdb extends Component {
 	render() {
 		let favorites = this.state.favorites,
 			movie = this.state.movie,
+            stars = this.state.stars,
 			searchResults = this.state.searchResults;
 
 		return (
@@ -157,8 +184,10 @@ class Omdb extends Component {
 
 				<div className="contentBody">
 						{movie ? (
-                            <OmdbMovieDetail data={movie} actions={{
-                                handleComment: this.handleComment, saveComment: this.saveComment
+                            <OmdbMovieDetail data={{movie, stars}} actions={{
+                                handleComment: this.handleComment, 
+                                saveComment: this.saveComment,
+                                saveRating: this.saveRating
                             }} />
 						) : (
 							<p>Search OMDB for a Movie!</p>
