@@ -1,46 +1,33 @@
 import React, {Component} from 'react';
+import { OmdbFavorites, OmdbMovieDetail, OmdbSearch, OmdbSearchResults } from '../components';
 import {Link} from 'react-router-dom';
 
 class Omdb extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			favorites: [],
-			movie: null,
-			searchResults: [],
-			search: 'e.g. Guardians'
-		};
-	}
+    constructor(props) {
+        super(props);
+        this.state = {
+            favorites: [],
+            movie: null,
+            searchResults: [],
+            search: 'e.g. Guardians'
+        };
+        //bind to maintin 'this' in children
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.handleComment = this.handleComment.bind(this);
+        this.saveComment = this.saveComment.bind(this);
+    }
 
-	componentDidMount() {
+	componentDidMount() {	
 		this.getFavorites();
 	}
 
 	handleSearch(e){
-		// if click is from sidebar
-		if(typeof e === 'string'){
-			this.setState({search:e},() => {
-				this.searchOMDB();
-			});
-			return;
-		}
 		console.log('key',e.key, e, e.target, e.target.key, e.target.value);
-
-		// if click is from search form
 		if(e.key == 'Enter' || e.target.value==='Go'){
 			e.target.blur();
 			this.searchOMDB();
 		}
-	}
-
-	handleAdd(item){
-		console.log(item);
-		this.setState({movie: item});
-		this.saveMovie(item);
-	}
-
-	handleEdit(idx){
-		this.setState({movie: this.state.favorites[idx]})
 	}
 
 	handleChange(e){
@@ -60,13 +47,20 @@ class Omdb extends Component {
 		e.target.value=this.state.search;
 	}
 
+	handleAdd(item){
+		this.setState({movie: item});
+		this.saveMovie(item);
+	}
+
+	handleEdit(idx){
+		this.setState({movie: this.state.favorites[idx]})
+	}
+
 	handleComment(e){
-		console.log(e.target.value);
 		this.setState({movie: {...this.state.movie, comment:e.target.value}});
 	}
 
 	saveComment(e){
-		console.log('sve cmt', e.target.value);
 		this.setState({movie: {...this.state.movie, comment:e.target.value}});
 		let api=fetch('/api/movies/edit', {
 				method: 'PUT',
@@ -86,8 +80,6 @@ class Omdb extends Component {
 	}
 
 	searchOMDB(){
-		console.log('getapi',this.state.search);
-		
 		let api=fetch('http://www.omdbapi.com/?s='+this.state.search+'&type=movie&page=1&apikey=e5a8df1')
 			.then((response) => response.json())
 			.then((responseJson) => {
@@ -107,7 +99,6 @@ class Omdb extends Component {
 		let api=fetch('/api/movies')
 		.then((response) => response.json())
 		.then((responseJson) => {
-			console.log('the data',responseJson)
 			this.setState({favorites:responseJson});
 		})
 		.catch((error) => {
@@ -116,13 +107,10 @@ class Omdb extends Component {
 	}
 
 	saveMovie(data){
-		console.log('save movie', data);
-
 		let api=fetch('http://www.omdbapi.com/?i='+data.imdbID+'&plot=short&apikey=e5a8df1')
 		.then((response) => response.json())
 		.then((responseJson) => {
 
-			console.log('the data',responseJson)
 			let data = responseJson;
 			let api=fetch('/api/movies/new', {
 					method: 'POST',
@@ -154,66 +142,30 @@ class Omdb extends Component {
 
 		return (
 			<main className="omdb-main">
-				{/* search */}
-				<form className="searchBar" onSubmit={this.handleSubmit}>
-					<input type="text" name="search" value={this.state.search} 
-						onChange={(e)=>this.handleChange(e)}
-						onKeyPress={(e)=>this.handleSearch(e)}
-						onFocus={(e)=>this.handleFocus(e)} 
-						onBlur={(e)=>this.handleBlur(e)}
-					/>
-				</form>
-				{/* search results */}
-				<ul className="searchResults">
-						{
-							searchResults &&
-							searchResults.map(item => (
-								<li onClick={()=>this.handleAdd(item)}>
-									<img src={(item.Poster !== 'N/A') ? item.Poster : 'http://l.yimg.com/os/mit/media/m/entity/images/movie_placeholder-103642.png'} />
-									<p>{item.Title}</p>
-								</li>
-							))
-						}
-				</ul>
+
+                <OmdbSearch 
+                    value={this.state.search} 
+                    actions={{
+                        handleSubmit: (e) => this.handleSubmit(e),
+                        handleChange: (e) => this.handleChange(e),
+                        handleFocus: (e) => this.handleFocus(e),
+                        handleBlur: (e) => this.handleBlur(e),
+                        handleSearch: (e) => this.handleSearch(e)
+                    }}
+                />
+
+                <OmdbSearchResults data={searchResults} actions={{handleAdd: this.handleAdd}} />
+
 				<div className="contentBody">
-						{/* Movie */}
 						{movie ? (
-							<div className="contentMovie">
-								<img className="moviePoster" src={(movie.poster !== 'N/A') ? movie.poster : 'http://l.yimg.com/os/mit/media/m/entity/images/movie_placeholder-103642.png'} />
-								<div className="movieDetail">
-									<p>{movie.title}</p>
-									<p>{movie.year}</p>
-									<p>{movie.plot}</p>
-									<p>Rating: {movie.rating}
-										<span className="movieRating">
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-											<i class="fas fa-star"></i>
-										</span>
-									</p>
-									{/* <p contenteditable="true" onChange={(e)=>this.handleComment(e)}>{movie.comment}</p> */}
-									<textarea name="comments" value={this.state.movie.comment} 
-										onChange={(e)=>this.handleComment(e)}
-										onBlur={(e)=>this.saveComment(e)}
-									 />
-								</div>
-							</div>
+                            <OmdbMovieDetail data={movie} actions={{
+                                handleComment: this.handleComment, saveComment: this.saveComment
+                            }} />
 						) : (
 							<p>Search OMDB for a Movie!</p>
 						)}
 						
-						{/* favorites */}
-						<ul className="contentFavorites">
-							<li>Favorites</li>
-							{
-								favorites &&
-								favorites.map((item, idx) => (
-									<li onClick={()=>this.handleEdit(idx)} className={(this.state.movie && (this.state.movie.imdbID === item.imdbID))? 'active':''}>{item.title}</li>
-								))
-							}
-						</ul>
+                        <OmdbFavorites data={{favorites, movie}} actions={{handleEdit: this.handleEdit}} />
 				</div>
 		  	</main>
 		);
