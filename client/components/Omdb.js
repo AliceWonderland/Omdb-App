@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { OmdbFavorites, OmdbMovieDetail, OmdbSearch, OmdbSearchResults } from '../components';
-import {Link} from 'react-router-dom';
 
 class Omdb extends Component {
     constructor(props) {
