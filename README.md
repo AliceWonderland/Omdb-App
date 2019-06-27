@@ -22,18 +22,20 @@
 * Open Postico > Create new db named "Omdb-App"
 
 ### Installation
-* git clone 'https://github.com/AliceWonderland/Omdb-App.git'
-* npm install
-* npm run start
-* Browse to localhost
+From Terminal/Command Line, run the following:
+* `git clone https://github.com/AliceWonderland/Omdb-App.git`
+* `cd Omdb-App`
+* `npm install`
+* `npm run start`
+* `Browse to localhost`
 
 ### Dirs + Files
-* App Root /client/index.js
-* Server Root /server/index.js
-* Views /client/components
-* DB /db/models
-* API /server/api
-* CSS /public/styles.scss
+* App Root `/client/index.js`
+* Server Root `/server/index.js`
+* Views `/client/components`
+* DB `/db/models`
+* API `/server/api`
+* CSS `/public/styles.scss`
 
 
 ### Notes:
