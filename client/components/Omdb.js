@@ -62,27 +62,29 @@ class Omdb extends Component {
 	}
 
 	saveComment(e){
-		this.setState({movie: {...this.state.movie, comment:e.target.value}});
-		let api=fetch('/api/movies/edit', {
-				method: 'PUT',
-				body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
-				headers:{
-				'Content-Type': 'application/json'
-				}
-			})
-			.then(res => res.json())
-			.then(response => {
-				console.log('res',response);
-				console.log('Success:', JSON.stringify(response));
-				console.log('state',this.state.movie);
-				this.getFavorites();
-			})
-			.catch(error => console.error('Error:', error));
+        this.setState({
+            movie: {...this.state.movie, comment:e.target.value}
+        }, () => {
+            let api=fetch('/api/movies/edit', {
+                    method: 'PUT',
+                    body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
+                    headers:{
+                    'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(response => {
+                    console.log('res',response);
+                    console.log('Success:', JSON.stringify(response));
+                    console.log('state',this.state.movie);
+                    this.getFavorites();
+                })
+                .catch(error => console.error('Error:', error));
+        });
 	}
 
     saveRating(stars){
         stars=stars;
-
         this.setState({
             movie: {...this.state.movie, rating:stars}
         }, () => {
@@ -122,42 +124,42 @@ class Omdb extends Component {
 
 	getFavorites(){
 		let api=fetch('/api/movies')
-		.then((response) => response.json())
-		.then((responseJson) => {
-			this.setState({favorites:responseJson});
-		})
-		.catch((error) => {
-			console.error('error', error);
-		});
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({favorites:responseJson});
+            })
+            .catch((error) => {
+                console.error('error', error);
+            });
 	}
 
 	saveMovie(data){
 		let api=fetch('http://www.omdbapi.com/?i='+data.imdbID+'&plot=short&apikey=e5a8df1')
-		.then((response) => response.json())
-		.then((responseJson) => {
+            .then((response) => response.json())
+            .then((responseJson) => {
 
-			let data = responseJson;
-			let api=fetch('/api/movies/new', {
-					method: 'POST',
-					body: JSON.stringify(data), // data can be `string` or {object}!
-					headers:{
-					'Content-Type': 'application/json'
-					}
-				})
-				.then(res => res.json())
-				.then(response => {
-					console.log('res',response);
-					console.log('Success:', JSON.stringify(response));
-					this.setState({movie:response});
-					console.log('state',this.state.movie);
-					this.getFavorites();
-				})
-				.catch(error => console.error('Error:', error));
-				
-		})
-		.catch((error) => {
-			console.error('error', error);
-		});
+                let data = responseJson;
+                let api=fetch('/api/movies/new', {
+                        method: 'POST',
+                        body: JSON.stringify(data), // data can be `string` or {object}!
+                        headers:{
+                        'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(response => {
+                        console.log('res',response);
+                        console.log('Success:', JSON.stringify(response));
+                        this.setState({movie:response});
+                        console.log('state',this.state.movie);
+                        this.getFavorites();
+                    })
+                    .catch(error => console.error('Error:', error));
+                    
+            })
+            .catch((error) => {
+                console.error('error', error);
+            });
 	}
 
 	render() {
