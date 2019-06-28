@@ -46,6 +46,4 @@ From Terminal/Command Line, run the following:
 This app is built using my barebones react-app skelly.
 https://github.com/AliceWonderland/React-App
 
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="250" />
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="250" />
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="250" />
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="225" /><img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="225" /><img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="225" />
