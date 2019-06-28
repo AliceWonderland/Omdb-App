@@ -5,7 +5,7 @@
 * Update a Movie Rating or Comment
 * Delete a Movie (n/a)
 
-http://omdb.alicechuang.com/ (Deploy not working. Please install below to run!)
+http://omdb.alicechuang.com/ (Reverse Proxy not working. Please install below to run!)
 
 ![](https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/favorites.png)
 
