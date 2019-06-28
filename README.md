@@ -23,7 +23,7 @@ http://omdb.alicechuang.com/ (Reverse Proxy not working. Please install below to
 * Postgres https://postgresapp.com/
 * Postico https://eggerapps.at/postico/
 * Make sure Postgres is running
-* Open Postico > Create new db named "Omdb-App"
+* Open Postico > Create new db named "omdb-app"
 
 ### Installation
 From Terminal/Command Line, run the following:
