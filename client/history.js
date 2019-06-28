@@ -1,3 +1,4 @@
+// not in use
 import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory();

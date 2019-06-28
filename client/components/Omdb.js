@@ -102,6 +102,7 @@ class Omdb extends Component {
     }
 
 	searchOMDB(){
+        // max 10 results
 		let api=fetch('http://www.omdbapi.com/?s='+this.state.search+'&type=movie&page=1&apikey=e5a8df1')
 			.then((response) => response.json())
 			.then((responseJson) => {
@@ -111,10 +112,6 @@ class Omdb extends Component {
 			.catch((error) => {
 				console.error('error', error);
 			});
-
-		// http://www.omdbapi.com/?i=tt3896198&apikey=e5a8df1
-		// http://www.omdbapi.com/?t=space&plot=short&apikey=e5a8df1
-		// http://www.omdbapi.com/?s=space&type=movie&page=1&apikey=e5a8df1 max 10 results
 	}
 
 	getFavorites(){
@@ -178,11 +175,14 @@ class Omdb extends Component {
 
 				<div className="contentBody">
 						{movie ? (
-                            <OmdbMovieDetail data={{movie, stars}} actions={{
-                                handleComment: this.handleComment, 
-                                saveComment: this.saveComment,
-                                saveRating: this.saveRating
-                            }} />
+                            <OmdbMovieDetail 
+                                data={{movie, stars}} 
+                                actions={{
+                                    handleComment: this.handleComment, 
+                                    saveComment: this.saveComment,
+                                    saveRating: this.saveRating
+                                }}
+                            />
 						) : (
 							<p>Search OMDB for a Movie!</p>
 						)}

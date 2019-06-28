@@ -1,3 +1,4 @@
+// not in use
 const crypto = require('crypto');
 const Sequelize = require('sequelize');
 const db = require('../index');

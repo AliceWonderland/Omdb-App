@@ -1,3 +1,4 @@
+// redux not in use
 // ACTIONS
 let nextTodoId = 0;
 export const addBasketItem = item => {

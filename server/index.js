@@ -23,7 +23,6 @@ const routesApi = require('./api');
 app.use('/api', routesApi);
 // end routing
 
-
 // handle 404s
 app.get('*', function (req, res) {
 	res.sendFile(path.join(__dirname, '../public/index.html'));
