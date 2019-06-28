@@ -31,7 +31,7 @@ From Terminal/Command Line, run the following:
 * `cd Omdb-App`
 * `npm install`
 * `npm run start`
-* `Browse to localhost`
+* Browse to http://localhost:3003/
 
 ### Dirs + Files
 * App Root `/client/index.js`
