@@ -1,8 +1,3 @@
-// const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432:boilerplater', {
-//   logging: false // unless you like the logs
-//   // ...and there are many other options you may want to play with
-// });
-
 const debug = require('debug')('sql');
 const chalk = require('chalk');
 const Sequelize = require('sequelize');
@@ -27,7 +22,8 @@ module.exports = db;
 require('./models');
 
 // sync the db, creating it if necessary
-function sync(force=false, retries=0, maxRetries=5) { //use force=true to drop all tables and re-create
+//use force=true to drop all tables and re-create
+function sync(force=false, retries=0, maxRetries=5) {
 	return db.sync({force})
 	.then(ok => console.log(`Synced models to db ${connectionString}`))
 	.catch(fail => {
