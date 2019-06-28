@@ -5,11 +5,10 @@
 * Update a Movie Rating or Comment
 * Delete a Movie (n/a)
 
-![](https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png)
-![](https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png)
 ![](https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/favorites.png)
-![](https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png)
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="200" />
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="250" />
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="250" />
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="250" />
 
 ### Stack + Tech
 * React
