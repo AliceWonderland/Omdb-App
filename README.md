@@ -5,10 +5,9 @@
 * Update a Movie Rating or Comment
 * Delete a Movie (n/a)
 
+http://omdb.alicechuang.com/ (Deploy not working. Please install below to run!)
+
 ![](https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/favorites.png)
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="250" />
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="250" />
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="250" />
 
 ### Stack + Tech
 * React
@@ -46,3 +45,7 @@ From Terminal/Command Line, run the following:
 ### Notes:
 This app is built using my barebones react-app skelly.
 https://github.com/AliceWonderland/React-App
+
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="250" />
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="250" />
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="250" />
