@@ -42,7 +42,7 @@ const db = require('../db');
 db.sync()
 .then(() => {
 	// start server
-	const port = process.env.PORT || 6060;
+	const port = process.env.PORT || 3003;
 	const server = app.listen(port, function () {
 		console.log(`Your server, listening on port ${port}`);
 		console.log(`Browse to http://localhost:${port} to view your app`);

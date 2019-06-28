@@ -4,7 +4,7 @@
   "description": "Save and Rate Movies from OMDB",
   "main": "index.js",
   "database": "omdb-app",
-  "proxy": "http://localhost:6060",
+  "proxy": "http://localhost:3003",
   "scripts": {
     "test": "jest",
     "watch": "webpack --watch",
