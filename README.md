@@ -2,8 +2,8 @@
 * Search for a movie on OMDB
 * See Movies that have been rated by Users
 * Add in a Movie, With a Rating or Comment
-* Update a Movie Rating or Comment (Optional)
-* Delete a Movie (Optional)
+* Update a Movie Rating or Comment
+* Delete a Movie (n/a)
 
 ### Stack + Tech
 * React
