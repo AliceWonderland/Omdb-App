@@ -24,7 +24,7 @@ class Omdb extends Component {
 	}
 
 	handleSearch(e){
-		console.log('key',e.key, e, e.target, e.target.key, e.target.value);
+		// console.log('key',e.key, e, e.target, e.target.key, e.target.value);
 		if(e.key == 'Enter' || e.target.value==='Go'){
 			e.target.blur();
 			this.searchOMDB();
@@ -32,7 +32,6 @@ class Omdb extends Component {
 	}
 
 	handleChange(e){
-		console.log(e.target.value)
 		this.setState({search: e.target.value});
 	}
 
@@ -74,9 +73,7 @@ class Omdb extends Component {
                 })
                 .then(res => res.json())
                 .then(response => {
-                    console.log('res',response);
                     console.log('Success:', JSON.stringify(response));
-                    console.log('state',this.state.movie);
                     this.getFavorites();
                 })
                 .catch(error => console.error('Error:', error));
@@ -97,9 +94,7 @@ class Omdb extends Component {
                 })
                 .then(res => res.json())
                 .then(response => {
-                    console.log('res',response);
                     console.log('Success:', JSON.stringify(response));
-                    console.log('state',this.state.movie);
                     this.getFavorites();
                 })
                 .catch(error => console.error('Error:', error));
