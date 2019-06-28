@@ -148,10 +148,8 @@ class Omdb extends Component {
                     })
                     .then(res => res.json())
                     .then(response => {
-                        console.log('res',response);
                         console.log('Success:', JSON.stringify(response));
                         this.setState({movie:response});
-                        console.log('state',this.state.movie);
                         this.getFavorites();
                     })
                     .catch(error => console.error('Error:', error));
@@ -170,7 +168,6 @@ class Omdb extends Component {
 
 		return (
 			<main className="omdb-main">
-
                 <OmdbSearch 
                     value={this.state.search} 
                     actions={{
