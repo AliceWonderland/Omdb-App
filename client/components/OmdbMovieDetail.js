@@ -11,7 +11,7 @@ class OmdbMovieDetail extends Component {
                     <p>{movie.title}</p>
                     <p>{movie.year}</p>
                     <p>{movie.plot}</p>
-                    <p>Rating: {movie.rating}
+                    <p>Rating:
                         <span className="movieRating">
                             {
                                 stars.map((ele,idx) => (
