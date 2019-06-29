@@ -17,6 +17,7 @@ class Omdb extends Component {
         this.handleComment = this.handleComment.bind(this);
         this.saveComment = this.saveComment.bind(this);
         this.saveRating = this.saveRating.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
 	componentDidMount() {	
@@ -79,6 +80,22 @@ class Omdb extends Component {
                 .catch(error => console.error('Error:', error));
         });
 	}
+
+    handleDelete(id){
+        let api=fetch('/api/movies/delete/'+id, {
+            method: 'DELETE',
+            body: JSON.stringify({id}),
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(response => {
+            console.log('Success:', JSON.stringify(response));
+            this.getFavorites();
+        })
+        .catch(error => console.error('Error:', error));
+    }
 
     saveRating(stars){
         stars=stars;
@@ -180,7 +197,8 @@ class Omdb extends Component {
                                 actions={{
                                     handleComment: this.handleComment, 
                                     saveComment: this.saveComment,
-                                    saveRating: this.saveRating
+                                    saveRating: this.saveRating,
+                                    handleDelete: this.handleDelete
                                 }}
                             />
 						) : (

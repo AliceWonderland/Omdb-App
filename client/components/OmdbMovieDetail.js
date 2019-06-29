@@ -8,7 +8,7 @@ class OmdbMovieDetail extends Component {
             <div className="contentMovie">
                 <img className="moviePoster" src={(movie.poster !== 'N/A') ? movie.poster : 'http://l.yimg.com/os/mit/media/m/entity/images/movie_placeholder-103642.png'} />
                 <div className="movieDetail">
-                    <p>{movie.title}</p>
+                    <p>{movie.title} <i className="fa fa-trash-alt" onClick={()=>this.props.actions.handleDelete(movie.imdbID)}></i></p>
                     <p>{movie.year}</p>
                     <p>{movie.plot}</p>
                     <p>Rating:

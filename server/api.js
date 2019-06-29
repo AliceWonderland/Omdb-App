@@ -64,22 +64,31 @@ api.put('/movies/edit/', (req, res, next) => {
 });
 
 // DELETE MOVIE
-api.delete('/movies/:movieId', (req, res, next) => {
-	var movieId=req.params.movieId;
+api.delete('/movies/delete/:movieId', (req, res, next) => {
+	var movieId=req.params.movieId, //can use either/or
+        movideIdBody=req.body.id;
+
+    console.log('delete api', movieId, movideIdBody);
+
+    Movies.destroy({ where: { imdbID: movieId } })
+    .then(function (data) {
+		res.send(data);
+	})
+	.catch(next);
 	
-	Movies.findById(movieId)
-	.then(function (data) {
-		if (data) {
-			res.status(204);
-			data.destroy({force: true})
-			.then(function (data) {
-				res.send(data);
-			});
-		}
-		else {
-			res.sendStatus(404);
-		}
-	});
+    // Movies.findAll({ where: {imdbID: movieId} })
+	// .then(function (data) {
+	// 	if (data) {
+	// 		res.status(204);
+	// 		data.destroy({force: true})
+	// 		.then(function (data) {
+	// 			res.send(data);
+	// 		});
+	// 	}
+	// 	else {
+	// 		res.sendStatus(404);
+	// 	}
+	// });
 });
 
 module.exports = api;

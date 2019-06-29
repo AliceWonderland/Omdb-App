@@ -41,9 +41,13 @@ From Terminal/Command Line, run the following:
 * API `/server/api`
 * CSS `/public/styles.scss`
 
+<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="225" /> <img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="225" /> <img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="225" />
 
 ### Notes:
 This app is built using my barebones react-app skelly.
 https://github.com/AliceWonderland/React-App
 
-<img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/landing.png" width="225" /> <img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/detail.png" width="225" /> <img src="https://github.com/AliceWonderland/Omdb-App/blob/master/public/assets/imgs/search.png" width="225" />
+### Resources
+Fetch API
+https://developers.google.com/web/updates/2015/03/introduction-to-fetch
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch

@@ -74,6 +74,11 @@ footer {
         a {
             color: #fff;
             margin: 10px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     }
 }
@@ -118,12 +123,13 @@ main.omdb-main {
             flex-basis: 19%;
             word-break: break-word;
             margin: 0 5px 5px 0;
+            padding: 10px;
             cursor: cell;
             border-radius: 23px;
             font-weight: bold;
 
             &:hover {
-                border: 3px solid red;
+                border: 3px solid #ff000059;
                 background-color: #ffc0cb6b;
             }
 
@@ -136,7 +142,7 @@ main.omdb-main {
                 height: 130px;
                 margin-right: 5px;
                 border-radius: 20px;
-                border: 1px solid #564d4d30;
+                border: 1px solid #bf949445;
             }
         }
     }
@@ -153,11 +159,19 @@ main.omdb-main {
                 border-radius: 10px;
                 margin-right: 20px;
                 align-self: flex-start;
+                border: 1px solid #eee;
+                padding: 10px;
+                box-shadow: 5px 5px #8421210a;
             }
 
             p:nth-child(1), p:nth-child(2) {
                 font-weight: bold;
                 text-transform: uppercase;
+            }
+
+            p:nth-child(1) {
+                display: flex;
+                justify-content: space-between;
             }
 
             p:nth-child(2) {
@@ -180,7 +194,25 @@ main.omdb-main {
                 border: 0px;
 
                 &:hover {
-                    background-color: #eee;
+                    background-color: #eeeeee7d;
+                    border-bottom-left-radius: 14px;
+                    border-top-right-radius: 14px;
+                }
+            }
+
+            i.fa-trash-alt {
+                visibility: hidden;
+                color: #ff000069;
+
+                &:hover {
+                    cursor: pointer;
+                    color: red;
+                }
+            }
+
+            &:hover {
+                i.fa-trash-alt {
+                    visibility: visible;
                 }
             }
         }
