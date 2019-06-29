@@ -15,7 +15,7 @@ http://omdb.alicechuang.com/
 * Postgres/Sequelize
 * Node
 * Webpack/Babel
-* Fetch
+* Fetch Api
 * Sass
 
 ### Pre-Installation
@@ -49,5 +49,5 @@ https://github.com/AliceWonderland/React-App
 
 ### Resources
 Fetch API
-https://developers.google.com/web/updates/2015/03/introduction-to-fetch
-https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+* https://developers.google.com/web/updates/2015/03/introduction-to-fetch
+* https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
