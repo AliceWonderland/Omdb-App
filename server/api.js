@@ -68,27 +68,17 @@ api.delete('/movies/delete/:movieId', (req, res, next) => {
 	var movieId=req.params.movieId, //can use either/or
         movideIdBody=req.body.id;
 
-    console.log('delete api', movieId, movideIdBody);
-
     Movies.destroy({ where: { imdbID: movieId } })
     .then(function (data) {
-		res.send(data);
-	})
-	.catch(next);
-	
-    // Movies.findAll({ where: {imdbID: movieId} })
-	// .then(function (data) {
-	// 	if (data) {
-	// 		res.status(204);
-	// 		data.destroy({force: true})
-	// 		.then(function (data) {
-	// 			res.send(data);
-	// 		});
-	// 	}
-	// 	else {
-	// 		res.sendStatus(404);
-	// 	}
-	// });
+        if(data){
+            console.log('delete',data);
+            res.status(204);
+            res.json({imdbID:movieId});
+        }else{
+            console.log('delete record does not exist');
+            res.status(404);
+        }
+	});
 });
 
 module.exports = api;

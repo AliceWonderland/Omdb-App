@@ -89,10 +89,10 @@ class Omdb extends Component {
             'Content-Type': 'application/json'
             }
         })
-        .then(res => res.json())
         .then(response => {
             console.log('Success:', JSON.stringify(response));
             this.getFavorites();
+            this.setState({movie:null});
         })
         .catch(error => console.error('Error:', error));
     }
@@ -135,6 +135,7 @@ class Omdb extends Component {
 		let api=fetch('/api/movies')
             .then((response) => response.json())
             .then((responseJson) => {
+                console.log('getFave');
                 this.setState({favorites:responseJson});
             })
             .catch((error) => {
