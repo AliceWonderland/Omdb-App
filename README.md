@@ -3,7 +3,7 @@
 * See Movies that have been rated by Users
 * Add in a Movie, With a Rating or Comment
 * Update a Movie Rating or Comment
-* Delete a Movie (n/a)
+* Delete a Movie
 
 http://omdb.alicechuang.com/
 

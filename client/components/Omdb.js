@@ -135,7 +135,6 @@ class Omdb extends Component {
 		let api=fetch('/api/movies')
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('getFave');
                 this.setState({favorites:responseJson});
             })
             .catch((error) => {
