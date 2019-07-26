@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Nav } from '../components';
 
 class Header extends Component {
-	render() {
-		return (
+    render() {
+        return (
             <header className="App-header">
                 <Link to="/">
                     <i className="fas fa-thumbs-up fa-5x"></i>
@@ -12,8 +12,8 @@ class Header extends Component {
                 </Link>
                 <Nav/>
             </header>
-		);
-	}
+        );
+    }
 }
 
 export default Header;

@@ -20,48 +20,48 @@ class Omdb extends Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-	componentDidMount() {	
-		this.getFavorites();
-	}
+    componentDidMount() {	
+        this.getFavorites();
+    }
 
-	handleSearch(e){
-		// console.log('key',e.key, e, e.target, e.target.key, e.target.value);
-		if(e.key == 'Enter' || e.target.value==='Go'){
-			e.target.blur();
-			this.searchOMDB();
-		}
-	}
+    handleSearch(e){
+        // console.log('key',e.key, e, e.target, e.target.key, e.target.value);
+        if(e.key == 'Enter' || e.target.value==='Go'){
+            e.target.blur();
+            this.searchOMDB();
+        }
+    }
 
-	handleChange(e){
-		this.setState({search: e.target.value});
-	}
+    handleChange(e){
+        this.setState({search: e.target.value});
+    }
 
-	handleSubmit(e){
-		e.preventDefault();
-	}
+    handleSubmit(e){
+        e.preventDefault();
+    }
 
-	handleFocus(e){
-		e.target.value='';
-	}
+    handleFocus(e){
+        e.target.value='';
+    }
 
-	handleBlur(e){
-		e.target.value=this.state.search;
-	}
+    handleBlur(e){
+        e.target.value=this.state.search;
+    }
 
-	handleAdd(item){
-		this.setState({movie: item});
-		this.saveMovie(item);
-	}
+    handleAdd(item){
+        this.setState({movie: item});
+        this.saveMovie(item);
+    }
 
-	handleEdit(idx){
-		this.setState({movie: this.state.favorites[idx]})
-	}
+    handleEdit(idx){
+        this.setState({movie: this.state.favorites[idx]})
+    }
 
-	handleComment(e){
-		this.setState({movie: {...this.state.movie, comment:e.target.value}});
-	}
+    handleComment(e){
+        this.setState({movie: {...this.state.movie, comment:e.target.value}});
+    }
 
-	saveComment(e){
+    saveComment(e){
         this.setState({
             movie: {...this.state.movie, comment:e.target.value}
         }, () => {
@@ -79,7 +79,7 @@ class Omdb extends Component {
                 })
                 .catch(error => console.error('Error:', error));
         });
-	}
+    }
 
     handleDelete(id){
         let api=fetch('/api/movies/delete/'+id, {

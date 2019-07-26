@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class OmdbSearch extends Component {
-	render() {
-		return (
+    render() {
+        return (
             <form className="searchBar" onSubmit={this.props.actions.handleSubmit}>
                 <input type="text" name="search" value={this.props.value} 
                     onChange={(e)=>this.props.actions.handleChange(e)}
@@ -11,8 +11,8 @@ class OmdbSearch extends Component {
                     onBlur={(e)=>this.props.actions.handleBlur(e)}
                 />
             </form>
-		);
-	}
+        );
+    }
 }
 
 export default OmdbSearch;
