@@ -11,6 +11,7 @@ class Omdb extends Component {
             stars: [1,2,3,4,5],
             search: 'e.g. Guardians of the Galaxy'
         };
+
         //bind to maintin 'this' in children
         this.handleAdd = this.handleAdd.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
@@ -63,9 +64,46 @@ class Omdb extends Component {
 
     saveComment(e){
         this.setState({
-            movie: {...this.state.movie, comment:e.target.value}
-        }, () => {
-            let api=fetch('/api/movies/edit', {
+                movie: {...this.state.movie, comment:e.target.value}
+            }, () => {
+                let api=fetch('/api/movies/edit', {
+                        method: 'PUT',
+                        body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
+                        headers:{
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(response => {
+                        console.log('Success:', JSON.stringify(response));
+                        this.getFavorites();
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+    }
+
+    handleDelete(id){
+        let api=fetch('/api/movies/delete/'+id, {
+                method: 'DELETE',
+                body: JSON.stringify({id}),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.getFavorites();
+                this.setState({movie:null});
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    saveRating(stars){
+        stars=stars;
+        this.setState({
+                movie: {...this.state.movie, rating:stars}
+            }, () => {
+                let api=fetch('/api/movies/edit', {
                     method: 'PUT',
                     body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
                     headers:{
@@ -78,44 +116,7 @@ class Omdb extends Component {
                     this.getFavorites();
                 })
                 .catch(error => console.error('Error:', error));
-        });
-    }
-
-    handleDelete(id){
-        let api=fetch('/api/movies/delete/'+id, {
-            method: 'DELETE',
-            body: JSON.stringify({id}),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            console.log('Success:', JSON.stringify(response));
-            this.getFavorites();
-            this.setState({movie:null});
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
-    saveRating(stars){
-        stars=stars;
-        this.setState({
-            movie: {...this.state.movie, rating:stars}
-        }, () => {
-            let api=fetch('/api/movies/edit', {
-                method: 'PUT',
-                body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(response => {
-                console.log('Success:', JSON.stringify(response));
-                this.getFavorites();
-            })
-            .catch(error => console.error('Error:', error));
-        });
+            });
     }
 
     searchOMDB(){
@@ -148,24 +149,23 @@ class Omdb extends Component {
             .then((responseJson) => {
                 let data = responseJson;
                 let api=fetch('/api/movies/new', {
-                    method: 'POST',
-                    body: JSON.stringify(data), // data can be `string` or {object}!
-                    headers:{
-                        'Content-Type': 'application/json'
-                    }
-                })
-            .then(res => res.json())
-            .then(response => {
-                console.log('Success:', JSON.stringify(response));
-                this.setState({movie:response});
-                this.getFavorites();
+                        method: 'POST',
+                        body: JSON.stringify(data), // data can be `string` or {object}!
+                        headers:{
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(response => {
+                        console.log('Success:', JSON.stringify(response));
+                        this.setState({movie:response});
+                        this.getFavorites();
+                    })
+                    .catch(error => console.error('Error:', error));
             })
-            .catch(error => console.error('Error:', error));
-
-        })
-        .catch((error) => {
-            console.error('error', error);
-        });
+            .catch((error) => {
+                console.error('error', error);
+            });
     }
 
     render() {
