@@ -207,10 +207,10 @@ class Omdb extends Component {
                         )
                     }
                     <OmdbFavorites data={{favorites, movie}} actions={{handleEdit: this.handleEdit}} />
-				</div>
-		  	</main>
-		);
-	}
+                </div>
+            </main>
+        );
+    }
 }
 
 export default Omdb;
