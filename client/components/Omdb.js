@@ -103,36 +103,36 @@ class Omdb extends Component {
             movie: {...this.state.movie, rating:stars}
         }, () => {
             let api=fetch('/api/movies/edit', {
-                    method: 'PUT',
-                    body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
-                    headers:{
-                    'Content-Type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(response => {
-                    console.log('Success:', JSON.stringify(response));
-                    this.getFavorites();
-                })
-                .catch(error => console.error('Error:', error));
+                method: 'PUT',
+                body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
+                headers:{
+                'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.getFavorites();
+            })
+            .catch(error => console.error('Error:', error));
         });
     }
 
-	searchOMDB(){
+    searchOMDB(){
         // max 10 results
-		let api=fetch('http://www.omdbapi.com/?s='+this.state.search+'&type=movie&page=1&apikey=e5a8df1')
-			.then((response) => response.json())
-			.then((responseJson) => {
-				console.log('the data',responseJson.Search)
-				this.setState({searchResults: responseJson.Search});
-			})
-			.catch((error) => {
-				console.error('error', error);
-			});
-	}
+        let api=fetch('http://www.omdbapi.com/?s='+this.state.search+'&type=movie&page=1&apikey=e5a8df1')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log('the data',responseJson.Search)
+                this.setState({searchResults: responseJson.Search});
+            })
+            .catch((error) => {
+            console.error('error', error);
+        });
+    }
 
-	getFavorites(){
-		let api=fetch('/api/movies')
+    getFavorites(){
+        let api=fetch('/api/movies')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({favorites:responseJson});
@@ -140,43 +140,43 @@ class Omdb extends Component {
             .catch((error) => {
                 console.error('error', error);
             });
-	}
+    }
 
-	saveMovie(data){
-		let api=fetch('http://www.omdbapi.com/?i='+data.imdbID+'&plot=short&apikey=e5a8df1')
+    saveMovie(data){
+        let api=fetch('http://www.omdbapi.com/?i='+data.imdbID+'&plot=short&apikey=e5a8df1')
             .then((response) => response.json())
             .then((responseJson) => {
 
                 let data = responseJson;
                 let api=fetch('/api/movies/new', {
-                        method: 'POST',
-                        body: JSON.stringify(data), // data can be `string` or {object}!
-                        headers:{
-                        'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(response => {
-                        console.log('Success:', JSON.stringify(response));
-                        this.setState({movie:response});
-                        this.getFavorites();
-                    })
-                    .catch(error => console.error('Error:', error));
-                    
+                    method: 'POST',
+                    body: JSON.stringify(data), // data can be `string` or {object}!
+                    headers:{
+                    'Content-Type': 'application/json'
+                    }
+                })
+            .then(res => res.json())
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.setState({movie:response});
+                this.getFavorites();
             })
-            .catch((error) => {
-                console.error('error', error);
-            });
-	}
+            .catch(error => console.error('Error:', error));
 
-	render() {
-		let favorites = this.state.favorites,
-			movie = this.state.movie,
+        })
+        .catch((error) => {
+            console.error('error', error);
+        });
+    }
+
+    render() {
+        let favorites = this.state.favorites,
+            movie = this.state.movie,
             stars = this.state.stars,
-			searchResults = this.state.searchResults;
+            searchResults = this.state.searchResults;
 
-		return (
-			<main className="omdb-main">
+        return (
+            <main className="omdb-main">
                 <OmdbSearch 
                     value={this.state.search} 
                     actions={{
@@ -190,8 +190,9 @@ class Omdb extends Component {
 
                 <OmdbSearchResults data={searchResults} actions={{handleAdd: this.handleAdd}} />
 
-				<div className="contentBody">
-						{movie ? (
+                <div className="contentBody">
+                    {
+                        movie ? (
                             <OmdbMovieDetail 
                                 data={{movie, stars}} 
                                 actions={{
@@ -201,11 +202,11 @@ class Omdb extends Component {
                                     handleDelete: this.handleDelete
                                 }}
                             />
-						) : (
-							<p>Search OMDB for a Movie!</p>
-						)}
-						
-                        <OmdbFavorites data={{favorites, movie}} actions={{handleEdit: this.handleEdit}} />
+                        ) : (
+                            <p>Search OMDB for a Movie!</p>
+                        )
+                    }
+                    <OmdbFavorites data={{favorites, movie}} actions={{handleEdit: this.handleEdit}} />
 				</div>
 		  	</main>
 		);
