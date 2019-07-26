@@ -69,7 +69,7 @@ class Omdb extends Component {
                     method: 'PUT',
                     body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
                     headers:{
-                    'Content-Type': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 })
                 .then(res => res.json())
@@ -86,7 +86,7 @@ class Omdb extends Component {
             method: 'DELETE',
             body: JSON.stringify({id}),
             headers:{
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
         })
         .then(response => {
@@ -106,7 +106,7 @@ class Omdb extends Component {
                 method: 'PUT',
                 body: JSON.stringify(this.state.movie), // data can be `string` or {object}!
                 headers:{
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             })
             .then(res => res.json())
@@ -127,8 +127,8 @@ class Omdb extends Component {
                 this.setState({searchResults: responseJson.Search});
             })
             .catch((error) => {
-            console.error('error', error);
-        });
+                console.error('error', error);
+            });
     }
 
     getFavorites(){
@@ -146,13 +146,12 @@ class Omdb extends Component {
         let api=fetch('http://www.omdbapi.com/?i='+data.imdbID+'&plot=short&apikey=e5a8df1')
             .then((response) => response.json())
             .then((responseJson) => {
-
                 let data = responseJson;
                 let api=fetch('/api/movies/new', {
                     method: 'POST',
                     body: JSON.stringify(data), // data can be `string` or {object}!
                     headers:{
-                    'Content-Type': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 })
             .then(res => res.json())
@@ -206,6 +205,7 @@ class Omdb extends Component {
                             <p>Search OMDB for a Movie!</p>
                         )
                     }
+
                     <OmdbFavorites data={{favorites, movie}} actions={{handleEdit: this.handleEdit}} />
                 </div>
             </main>
