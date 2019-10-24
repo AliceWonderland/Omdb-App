@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class OmdbSearchResults extends Component {
-	render() {
+    render() {
         let searchResults = this.props.data;
-		return (
+        return (
             <ul className="searchResults">
             {
                 searchResults &&
@@ -14,9 +14,9 @@ class OmdbSearchResults extends Component {
                     </li>
                 ))
             }
-            </ul>   
-		);
-	}
+        </ul>   
+        );
+    }
 }
 
 export default OmdbSearchResults;

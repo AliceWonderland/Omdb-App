@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class OmdbFavorites extends Component {
-	render() {
+    render() {
         let favorites = this.props.data.favorites,
             movie = this.props.data.movie;
-		return (
+        return (
             <ul className="contentFavorites">
                 <li>Favorites</li>
                 {
@@ -14,8 +14,8 @@ class OmdbFavorites extends Component {
                     ))
                 }
             </ul>
-		);
-	}
+        );
+    }
 }
 
 export default OmdbFavorites;
